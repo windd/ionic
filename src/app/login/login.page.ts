@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ToastController } from '@ionic/angular';
 import { AppService, DataService, LocalStorageService } from '../service';
-
+import {Router} from '@angular/router';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.page.html',
@@ -19,14 +19,15 @@ export class LoginPage implements OnInit {
     public appService: AppService,
     public dataService: DataService,
     public storageService: LocalStorageService,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    private router: Router) {
   }
 
   ngOnInit() {
-    this.userName = '';
-    this.userPwd = '';
+    this.userName = '云平台管理员';
+    this.userPwd = 'eing2018';
     this.showPwd = false;
-    this.getCaptchaCode();
+    // this.getCaptchaCode();
   }
 
   // 获取验证码
@@ -54,18 +55,19 @@ export class LoginPage implements OnInit {
       this.toastTip('请填写密码');
       return;
     }
-    if (!this.codeNumber) {
-      this.toastTip('请填写验证码');
-      return;
-    }
+    // if (!this.codeNumber) {
+    //   this.toastTip('请填写验证码');
+    //   return;
+    // }
     this.dataService.accountLogin(this.userName, this.userPwd, this.codeNumber).subscribe(res => {
-      if (!res.user_id) {
-        this.getCaptchaCode();
-        this.toastTip(res.message);
-      } else {
-        this.storageService.setStore('userId', res.user_id);
+      if (res.code === 200) {
+        this.storageService.setStore('user', res.user);
         this.appService.userInfoEvent.emit('update');
-        this.location.back();
+        // this.location.back();
+        this.router.navigate(['/tabs/grid']);
+      } else {
+        // this.getCaptchaCode();
+        this.toastTip(res.message);
       }
     });
   }

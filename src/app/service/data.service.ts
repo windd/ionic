@@ -94,7 +94,7 @@ export class DataService {
   }
 
   accountLogin(username: string, password: string, captcha_code: any): any {
-    return this.http.post('/v2/login', { username, password, captcha_code });
+    return this.http.post('/user/login', { username, password, captcha_code });
   }
 
   /* 获取food页面的 category 种类列表 */
@@ -250,6 +250,14 @@ export class DataService {
       .set('version', '1.0.0');
     return this.http.get('/payapi/payment/queryOrder', { params: params });
   }
+
+  /**
+   * 获取站点列表
+   */
+
+   getStationList(): any {
+     return this.http.get('/map/list');
+   }
 
 }
 

@@ -1,3 +1,5 @@
+# 功能挺全的，就是有点丑
+
 # ionic4_angular7_elm
 基于ionic4 + ng7构建一个具有 30+ 页面的大型单页面应用（master必须使用ionic v4,已升级到v4正式版）
 
