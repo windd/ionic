@@ -8,6 +8,24 @@
 基于ionic3 + ng5 构建一个具有 30+ 页面的大型单页面应用(请使用v3分支，必须使用ionic v3才能启动)
 借鉴了[@bailicangdu](https://github.com/bailicangdu/vue2-elm) vue-elm项目，已征得其本人同意，[后台传送地址](https://github.com/bailicangdu/node-elm)
 
+## 生成apk
+
+1. 生成未签名apk
+```
+ionic cordova build android --prod --release
+```
+2. 制作签名文件
+```
+keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+```
+3. apk签名
+```
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore HelloWorld-release-unsigned.apk alias_name
+```
+4. 打包
+```
+zipalign -v 4 HelloWorld-release-unsigned.apk HelloWorld.apk
+```
 
 
 ## 项目运行
@@ -46,39 +64,7 @@ npm start
 
 >  另外一个 vue2 + vuex 的elm项目。[地址在这里](https://github.com/bailicangdu/vue2-elm)
 
-# 部分展示
-### 登录页
-<img src="https://github.com/nuonuoge/ionic4_angular5_elm/blob/master/screenshots/login.gif" width="320" height="568"/>
 
-### 搜索页
-<img src="https://github.com/nuonuoge/ionic4_angular5_elm/blob/master/screenshots/search.gif" width="320" height="568"/>
-
-### tabs
-<img src="https://github.com/nuonuoge/ionic4_angular5_elm/blob/master/screenshots/tabs.gif" width="320" height="568"/>
-
-### 商铺列表页
-<img src="https://github.com/nuonuoge/ionic4_angular5_elm/blob/master/screenshots/msite.gif" width="320" height="568"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/nuonuoge/ionic4_angular5_elm/blob/master/screenshots/food.gif" width="320" height="568"/>
-
-### 商铺页
-<img src="https://github.com/nuonuoge/ionic4_angular5_elm/blob/master/screenshots/shop1.gif" width="320" height="568"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/nuonuoge/ionic4_angular5_elm/blob/master/screenshots/shop2.gif" width="320" height="568"/>
-
-# 目标功能
-- [x] 定位功能 -- 完成
-- [x] 选择城市 -- 完成
-- [x] 搜索地址 -- 完成
-- [x] 展示所选地址附近商家列表 -- 完成
-- [x] 搜索美食，餐馆 -- 完成
-- [x] 根据距离、销量、评分、特色菜、配送方式等进行排序和筛选 -- 完成
-- [x] 餐馆食品列表页 -- 完成
-- [x] 购物车功能 -- 完成
-- [x] 店铺评价页面 -- 完成
-- [x] 单个食品详情页面 -- 完成
-- [x] 商家详情页 -- 完成
-- [x] 登录、注册 -- 完成
-- [x] 个人中心 -- 完成
-- [x] 下单功能 -- 完成
-- [x] 订单列表 -- 完成
-- [x] 订单详情 -- 完成
 
 # License
 

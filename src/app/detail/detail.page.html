@@ -10,5 +10,17 @@
 </ion-header>
 
 <ion-content padding>
-
+  <ion-list lines="full">
+    <ion-list-header>
+        <ion-label >设备名</ion-label>
+        <ion-label >点名</ion-label>
+        <ion-text  >实时数据</ion-text>
+    </ion-list-header>
+    <ion-item *ngFor = 'let yc of ycList' >
+      <ion-label >{{yc.DevName}}</ion-label>
+      <ion-label >{{yc.name}}</ion-label>
+      <ion-text slot = "end">{{yc.realData}}</ion-text>
+    </ion-item>
+    
+  </ion-list>
 </ion-content>

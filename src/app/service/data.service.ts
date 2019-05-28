@@ -94,7 +94,8 @@ export class DataService {
   }
 
   accountLogin(username: string, password: string, captcha_code: any): any {
-    return this.http.post('/user/login', { username, password, captcha_code });
+    console.log('httplogin');
+    return this.http.post('/api/user/login', { username, password, captcha_code });
   }
 
   /* 获取food页面的 category 种类列表 */
@@ -256,8 +257,16 @@ export class DataService {
    */
 
    getStationList(): any {
-     return this.http.get('/map/list');
+     return this.http.get('/api/map/list');
    }
+
+
+   getRealdata(id: number): any {
+    console.log('data:', id);
+    return this.http.get('http://120.35.10.29/api/data/realdata/' + id, {
+      withCredentials: true
+    });
+  }
 
 }
 

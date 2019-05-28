@@ -14,7 +14,7 @@ export class WebsocketService {
    */
 
    getRealdata(id: number): any {
-     console.log('wsid:', id);
+     console.log('shizheem:', id);
      return this.http.get('/data/realdata/' + id);
    }
 }

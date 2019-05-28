@@ -9,7 +9,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class DataPage implements OnInit {
 
-  private stationList: any;
+  public stationList: any;
   constructor(
     public dataService: DataService,
     public alertController: AlertController,
@@ -25,6 +25,6 @@ export class DataPage implements OnInit {
     });
   }
   stationDetail(id: number) {
-    this.router.navigate(['/tabs/detail/' + id]);
+    this.router.navigate(['/api/tabs/detail/' + id]);
   }
 }
